@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class CarryObject : MonoBehaviour
 {
-    public bool IsCarryingObject;
+    public static bool IsCarryingObject;
 
     GameObject _objectBeingCarried;
 
-    // Update is called once per frame
+    [SerializeField] GameObject _aimObject;
+
+    public LayerMask FloorLayer;
+
+    
     void Update()
     {
         if (IsCarryingObject)
         {
             CarryPickedUpObject();
+
+            MoveAimObject();
         }
 
         CheckForObjectsToInteractWith();
@@ -22,6 +28,7 @@ public class CarryObject : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && IsCarryingObject)
         {
             IsCarryingObject = false;
+            _aimObject.SetActive(false);
 
             _objectBeingCarried.GetComponent<Rigidbody>().isKinematic = false;
 
@@ -31,6 +38,18 @@ public class CarryObject : MonoBehaviour
         }
 
        
+    }
+
+    private void MoveAimObject()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, FloorLayer))
+        {
+            _aimObject.transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+
+            //Debug.Log(_mousePosition.ToString());
+        }
     }
 
     private void ThrowCarriedObject()
@@ -105,8 +124,10 @@ public class CarryObject : MonoBehaviour
 
     private void PickUpObject(GameObject gameObject)
     {
+        _aimObject.SetActive(true);
         
         IsCarryingObject = true;
+
 
         _objectBeingCarried = gameObject;
 

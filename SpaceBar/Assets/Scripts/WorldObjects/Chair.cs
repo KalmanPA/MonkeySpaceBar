@@ -8,7 +8,7 @@ public class Chair : MonoBehaviour
     public bool IsOccupied;
 
     float _time = 0;
-    int _delay = 1;
+    float _delay = 0.5f;
 
     GameObject _seatedPerson;
     Customer _customerScript;
@@ -22,11 +22,11 @@ public class Chair : MonoBehaviour
     {
         if (IsOccupied) return;
 
-        //if (!other.gameObject.CompareTag("Person")) return;
+        if (!other.gameObject.CompareTag("Person")) return;
 
         if (_time <= _delay)
         {
-            //_seatedPerson.GetComponent<Rigidbody>().isKinematic = false;
+
             return;
         }
 
@@ -42,18 +42,23 @@ public class Chair : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!IsOccupied) return;
-
-        if (_time <= _delay)
+        if (!CarryObject.IsCarryingObject)
         {
-            return;
+            if (!IsOccupied) return;
+
+            if (_time <= _delay)
+            {
+                return;
+            }
+
+            if (!other.gameObject.CompareTag("Person")) return;
         }
 
-        if (!other.gameObject.CompareTag("Person")) return;
+        
 
         IsOccupied = false;
 
-        //_time = _delay;
+        _time = 0;
 
         _customerScript.SitUp();
 
