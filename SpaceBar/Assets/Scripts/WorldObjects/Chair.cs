@@ -11,7 +11,7 @@ public class Chair : MonoBehaviour
     int _delay = 1;
 
     GameObject _seatedPerson;
-    Person _person;
+    Customer _customerScript;
 
     private void Update()
     {
@@ -53,9 +53,11 @@ public class Chair : MonoBehaviour
 
         IsOccupied = false;
 
-        _person.SitUp();
+        //_time = _delay;
 
-        _person = null;
+        _customerScript.SitUp();
+
+        _customerScript = null;
         _seatedPerson = null;
 
         Debug.Log("Stood up");
@@ -64,7 +66,7 @@ public class Chair : MonoBehaviour
     private void SeatCustomer(GameObject gameObject)
     {
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-        _person = gameObject.GetComponent<Person>();
+        _customerScript = gameObject.GetComponent<Customer>();
         rb.isKinematic = true;
 
         _seatedPerson = gameObject;
@@ -77,7 +79,7 @@ public class Chair : MonoBehaviour
 
         Debug.Log("Seated");
 
-        _person.SitDown();
+        _customerScript.SitDown();
     }
 
 

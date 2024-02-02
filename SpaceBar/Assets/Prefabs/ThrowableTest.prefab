@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4361996307870184284}
   - component: {fileID: 3355942839329269739}
   - component: {fileID: 2534282697052140421}
-  - component: {fileID: 5836575435369692228}
+  - component: {fileID: 1032694166284987386}
   m_Layer: 0
   m_Name: ThrowableTest
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5836575435369692228
+--- !u!114 &1032694166284987386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7067208038198394270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e5fe49f2f54f343aaedf80b8349d12, type: 3}
+  m_Script: {fileID: 11500000, guid: dce8512899c3a1945a7eeba3b9562341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

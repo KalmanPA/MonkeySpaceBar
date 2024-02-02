@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Person : MonoBehaviour, ICarryable, IInteractible
 {
-    public bool IsBeingCarried { get; set; } = false;
+    //public bool IsBeingCarried { get; set; } = false;
 
     public event Action CharacterWasPickedUp;
     public event Action CharacterSatDown;
@@ -24,14 +24,14 @@ public class Person : MonoBehaviour, ICarryable, IInteractible
 
     public void PickUp()
     {
-        if (IsBeingCarried)
-        {
-            IsBeingCarried = false;
-        }
-        else
-        {
-            IsBeingCarried = true;
-        }
+        //if (IsBeingCarried)
+        //{
+        //    IsBeingCarried = false;
+        //}
+        //else
+        //{
+        //    IsBeingCarried = true;
+        //}
 
         CharacterWasPickedUp?.Invoke();
 

@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class Customer : MonoBehaviour
+public class Customer : MonoBehaviour, ICarryable, IInteractible
 {
-    Person _person;
+    //Person _person;
+
+    //public event Action CharacterWasPickedUp;
 
     public CustomerStateMachine StateMachine { get; set; }
 
@@ -17,14 +20,53 @@ public class Customer : MonoBehaviour
 
     public CustomerLeavingState LeavingingState { get; set; }
 
+    public void Interact()
+    {
+
+    }
+
+    public void Selecet()
+    {
+
+    }
+
+    public void PickUp()
+    {
+        //CharacterWasPickedUp?.Invoke();
+        if (StateMachine.CurrentCustomerState != LeavingingState && StateMachine.CurrentCustomerState != WaitingState)
+        {
+            StateMachine.ChangeState(WaitingState);
+        }
+    }
+
+    public void SitDown()
+    {
+        if (StateMachine.CurrentCustomerState == LeavingingState)
+        {
+            return;
+        }
+
+        StateMachine.ChangeState(OrderingState);
+    }
+
+    public void SitUp()
+    {
+        if (StateMachine.CurrentCustomerState == LeavingingState)
+        {
+            return;
+        }
+
+        StateMachine.ChangeState(WaitingState);
+    }
+
     private void Awake()
     {
         //Debug.Log("Faszom");
 
-        _person = GetComponent<Person>();
-        _person.CharacterWasPickedUp += Person_ObjectWasPickedUp;
-        _person.CharacterSatDown += Person_CharacterSatDown;
-        _person.CharacterStoodUp += Person_CharacterStoodUp;
+        //_person = GetComponent<Person>();
+        //_person.CharacterWasPickedUp += Person_ObjectWasPickedUp;
+        //_person.CharacterSatDown += Person_CharacterSatDown;
+        //_person.CharacterStoodUp += Person_CharacterStoodUp;
 
 
         StateMachine = new CustomerStateMachine();
@@ -38,34 +80,6 @@ public class Customer : MonoBehaviour
         LeavingingState = new CustomerLeavingState(this, StateMachine);
     }
 
-    private void Person_CharacterStoodUp()
-    {
-        if (StateMachine.CurrentCustomerState == LeavingingState)
-        {
-            return;
-        }
-
-        StateMachine.ChangeState(WaitingState);
-    }
-
-    private void Person_CharacterSatDown()
-    {
-        if (StateMachine.CurrentCustomerState == LeavingingState)
-        {
-            return;
-        }
-
-        StateMachine.ChangeState(OrderingState);
-    }
-
-    private void Person_ObjectWasPickedUp()
-    {
-        if (StateMachine.CurrentCustomerState != LeavingingState && StateMachine.CurrentCustomerState != WaitingState)
-        {
-            StateMachine.ChangeState(WaitingState);
-        }
-    }
-
     private void Start()
     {
         StateMachine.Initialize(WaitingState);
@@ -77,4 +91,14 @@ public class Customer : MonoBehaviour
     {
         StateMachine.CurrentCustomerState.Update();
     }
+
+    
+
+    
+
+    
+
+    
+
+    
 }

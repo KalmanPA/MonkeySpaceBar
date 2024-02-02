@@ -283,7 +283,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0798154, y: 3.7259328, z: 1.0113655}
+  m_Size: {x: 1.44, y: 3.82, z: 1.31}
   m_Center: {x: -0.058435142, y: -0.0937007, z: -0.09974867}
 --- !u!65 &41135254
 BoxCollider:
@@ -1144,7 +1144,6 @@ GameObject:
   - component: {fileID: 1414528431}
   - component: {fileID: 1414528430}
   - component: {fileID: 1414528435}
-  - component: {fileID: 1414528434}
   - component: {fileID: 1414528436}
   m_Layer: 0
   m_Name: Person
@@ -1240,18 +1239,6 @@ Transform:
   - {fileID: 614150252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1414528434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414528429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e5fe49f2f54f343aaedf80b8349d12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1414528435
 Rigidbody:
   m_ObjectHideFlags: 0
