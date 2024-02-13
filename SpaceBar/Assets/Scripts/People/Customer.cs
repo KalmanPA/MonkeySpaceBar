@@ -10,6 +10,8 @@ public class Customer : MonoBehaviour, ICarryable, IInteractible
 
     //public event Action CharacterWasPickedUp;
 
+    public string OrderID = null;
+
     public CustomerStateMachine StateMachine { get; set; }
 
     public CustomerWaitingState WaitingState { get; set; }
@@ -33,6 +35,11 @@ public class Customer : MonoBehaviour, ICarryable, IInteractible
     public void PickUp()
     {
         //CharacterWasPickedUp?.Invoke();
+        if (StateMachine.CurrentCustomerState == WaitingState)
+        {
+            return;
+        }
+
         if (StateMachine.CurrentCustomerState != LeavingingState && StateMachine.CurrentCustomerState != WaitingState)
         {
             StateMachine.ChangeState(WaitingState);
@@ -92,13 +99,18 @@ public class Customer : MonoBehaviour, ICarryable, IInteractible
         StateMachine.CurrentCustomerState.Update();
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Drink"))
+        {
+            Drink drinkScript = collision.gameObject.GetComponent<Drink>();
 
-    
+            if (drinkScript.OrderId == OrderID)
+            {
+                Destroy(collision.gameObject);
 
-    
-
-    
-
-    
+                StateMachine.ChangeState(DrinkingState);
+            }
+        }
+    }
 }

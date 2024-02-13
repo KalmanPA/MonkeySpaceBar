@@ -81,8 +81,12 @@ public class CarryObject : MonoBehaviour
 
         float launchForce = distance * 1.7f;
 
-        // Apply force to the projectile in the calculated direction
         Rigidbody projectileRb = _objectBeingCarried.GetComponent<Rigidbody>();
+
+        launchForce *= projectileRb.mass;
+
+        // Apply force to the projectile in the calculated direction
+        
         projectileRb.AddForce(launchDirection * launchForce, ForceMode.Impulse);
     }
 

@@ -42,6 +42,8 @@ public class Chair : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!other.gameObject.CompareTag("Person")) return;
+
         if (!CarryObject.IsCarryingObject)
         {
             if (!IsOccupied) return;
@@ -60,7 +62,12 @@ public class Chair : MonoBehaviour
 
         _time = 0;
 
-        _customerScript.SitUp();
+        if (_customerScript != null)
+        {
+            _customerScript.SitUp();
+        }
+
+        
 
         _customerScript = null;
         _seatedPerson = null;

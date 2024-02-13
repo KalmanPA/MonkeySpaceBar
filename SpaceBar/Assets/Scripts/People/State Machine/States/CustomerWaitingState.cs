@@ -28,9 +28,9 @@ public class CustomerWaitingState : CustomerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            _customer.StateMachine.ChangeState(_customer.OrderingState);
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    _customer.StateMachine.ChangeState(_customer.OrderingState);
+        //}
     }
 }

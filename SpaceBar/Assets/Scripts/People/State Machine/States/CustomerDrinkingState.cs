@@ -13,6 +13,8 @@ public class CustomerDrinkingState : CustomerState
     {
         base.EnterState();
 
+        _customer.OrderID = null;
+
         Debug.Log("Entered Drinking");
     }
 
