@@ -10,7 +10,7 @@ public class Customer : MonoBehaviour, ICarryable, IInteractible
 
     //public event Action CharacterWasPickedUp;
 
-    public string OrderID = null;
+    public string CustomerOrderID = null;
 
     public CustomerStateMachine StateMachine { get; set; }
 
@@ -105,7 +105,7 @@ public class Customer : MonoBehaviour, ICarryable, IInteractible
         {
             Drink drinkScript = collision.gameObject.GetComponent<Drink>();
 
-            if (drinkScript.OrderId == OrderID)
+            if (drinkScript.OrderId == CustomerOrderID)
             {
                 Destroy(collision.gameObject);
 

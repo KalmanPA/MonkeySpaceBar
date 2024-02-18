@@ -13,6 +13,8 @@ public class CarryObject : MonoBehaviour
 
     public LayerMask FloorLayer;
 
+    Rigidbody _objectBeingCarriedRigidbody;
+
     
     void Update()
     {
@@ -33,8 +35,6 @@ public class CarryObject : MonoBehaviour
             _objectBeingCarried.GetComponent<Rigidbody>().isKinematic = false;
 
             ThrowCarriedObject();
-
-
         }
 
        
@@ -134,6 +134,8 @@ public class CarryObject : MonoBehaviour
 
 
         _objectBeingCarried = gameObject;
+
+        _objectBeingCarriedRigidbody = gameObject.GetComponent<Rigidbody>();
 
         _objectBeingCarried.GetComponent<Rigidbody>().isKinematic = true;
 

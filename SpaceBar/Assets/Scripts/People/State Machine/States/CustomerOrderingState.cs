@@ -26,7 +26,7 @@ public class CustomerOrderingState : CustomerState
 
         Debug.Log($"Order: {_orderGenerator.CustomerOrderID}");
 
-        _customer.OrderID = _orderGenerator.CustomerOrderID;
+        _customer.CustomerOrderID = _orderGenerator.CustomerOrderID;
     }
 
     public override void ExitState()
